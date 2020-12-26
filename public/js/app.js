@@ -30729,6 +30729,9 @@ function Dashboard() {
     "aria-haspopup": "true",
     onClick: function onClick() {
       return setDropdown(!isDropdownOpen);
+    },
+    onBlur: function onBlur() {
+      return setDropdown(false);
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "sr-only"

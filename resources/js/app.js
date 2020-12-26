@@ -6,7 +6,7 @@ const rootElement = document.getElementById("root");
 
 ReactDOM.render(
     <React.StrictMode>
-        <Dashboard/>
+        <Dashboard />
     </React.StrictMode>,
     rootElement
 );

@@ -3,7 +3,7 @@ import {Transition} from "@headlessui/react";
 
 function Dashboard() {
     const [isDropdownOpen, setDropdown] = useState(false);
-
+    const [isMobileDropdownOpen, setMobileDrop] = useState(false);
     return (
         <>
             <div className="min-h-screen bg-white">
@@ -97,7 +97,8 @@ function Dashboard() {
                             <div className="-mr-2 flex items-center sm:hidden">
                                 {/* Mobile menu button */}
                                 <button
-                                    className="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-caramel">
+                                    className="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-caramel"
+                                    onClick={() => setMobileDrop(!isMobileDropdownOpen)} >
                                     <span className="sr-only">Open main menu</span>
                                     {/*
                     Heroicon name: menu
@@ -123,29 +124,20 @@ function Dashboard() {
                             </div>
                         </div>
                     </div>
-                    {/*
-    Mobile menu, toggle classes based on menu state.
-
-    Open: "block", closed: "hidden"
-  */}
-                    <div className="hidden sm:hidden">
+                    <div className={`${isMobileDropdownOpen ? "block" : "hidden"} sm:hidden`}>
                         <div className="pt-2 pb-3 space-y-1">
                             {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800" */}
                             <a href="#"
-                               className="bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                               className="bg-caramel-light block pl-3 pr-4 py-2 text-base font-medium">
                                 Dashboard
                             </a>
                             <a href="#"
-                               className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-                                Team
+                               className="text-gray-600 hover:bg-gray-50 hover:text-gray-800 block pl-3 pr-4 py-2 text-base font-medium">
+                                Tickets
                             </a>
                             <a href="#"
-                               className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-                                Projects
-                            </a>
-                            <a href="#"
-                               className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-                                Calendar
+                               className="text-gray-600 hover:bg-gray-50 hover:text-gray-800 block pl-3 pr-4 py-2 text-base font-medium">
+                                Help
                             </a>
                         </div>
                         <div className="pt-4 pb-3 border-t border-gray-200">

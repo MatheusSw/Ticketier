@@ -5,6 +5,7 @@ import DashboardHome from "./DashboardHome";
 function Dashboard() {
     const [isDropdownOpen, setDropdown] = useState(false);
     const [isMobileDropdownOpen, setMobileDrop] = useState(false);
+
     return (
         <>
             <div className="min-h-screen bg-white">

@@ -30,9 +30,9 @@ class TicketFactory extends Factory
             'identifier' => $this->faker->randomNumber(8),
             'title' => $this->faker->realText(24),
             'description' => $this->faker->realText(),
-            'impact' => Impact::all()->random()->id,
-            'created_by' => $user->id,
-            'status' => TicketStatus::all()->random()->id,
+            'impact_id' => Impact::all()->random()->id,
+            'created_by_id' => $user->id,
+            'status_id' => TicketStatus::all()->random()->id,
             'estimated_labour' => $this->faker->time()
         ];
     }

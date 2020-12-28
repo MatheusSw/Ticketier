@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Transition} from "@headlessui/react";
-import DashboardHome from "./DashboardHome";
+import Home from "./Home";
 
 function Dashboard() {
     const [isDropdownOpen, setDropdown] = useState(false);
@@ -193,7 +193,7 @@ function Dashboard() {
                     <main>
                         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                             <div className="px-4 py-8 sm:px-0">
-                                <DashboardHome/>
+                                <Home/>
                             </div>
                         </div>
                     </main>

@@ -20,7 +20,7 @@ class Ticket extends Model
     /**
      * Get the status for this ticket
      */
-    public function ticket_status()
+    public function status()
     {
         return $this->belongsTo(TicketStatus::class, 'status_id');
     }

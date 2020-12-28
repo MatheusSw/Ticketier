@@ -27,7 +27,7 @@ class TicketFactory extends Factory
         $user = User::factory()->make();
         $user->save();
         return [
-            'identifier' => $this->faker->randomNumber(8),
+            'identifier' => $this->faker->randomNumber(6),
             'title' => $this->faker->realText(24),
             'description' => $this->faker->realText(),
             'impact_id' => Impact::all()->random()->id,

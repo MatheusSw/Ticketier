@@ -1,12 +1,15 @@
 import React, {useState, useEffect} from "react";
 import axios from "../config/axiosConfig.js"
 import TicketStackedList from "./TicketStackedList.js";
+import ContentLoader from "react-content-loader";
 
 function Home(props) {
     const [data, setData] = useState({tickets: []});
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const fetchData = (async () => {
+            setIsLoading(true);
             const result = await axios({
                 url: 'graphql',
                 method: 'post',
@@ -33,6 +36,7 @@ function Home(props) {
             }).catch((error) => {
                 console.error(error);
             });
+            setIsLoading(false);
         })();
     }, [])
 
@@ -68,7 +72,44 @@ function Home(props) {
                     </div>
                 </div>
             </div>
-            <TicketStackedList tickets={data.tickets}/>
+            {isLoading && <ContentLoader
+                speed={2}
+                width={476}
+                height={120}
+                viewBox="0 0 476 120"
+                backgroundColor="#f3f3f3"
+                foregroundColor="#ecebeb"
+                {...props}
+            >
+                <rect x="0" y="20" rx="3" ry="3" width="180" height="6"/>
+                <rect x="0" y="45" rx="3" ry="3" width="400" height="6"/>
+            </ContentLoader>
+            }
+            {!isLoading && data.tickets.length === 0 && (
+                <div className="px-4 py-5 sm:p-6 text-center">
+                    <h3 className="text-lg leading-6 font-medium text-gray-800">
+                        No tickets!
+                    </h3>
+                    <div className="mt-2 text-sm text-gray-500">
+                        <p>
+                            Hey, it looks like you don't have any tickets assigned to you! Isn't that wonderful? Want to
+                            create one instead?
+                        </p>
+                    </div>
+                    <div className="mt-5">
+                        <button type="button"
+                                className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-lg text-white bg-caramel focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black">
+                            <svg className="-ml-1 mr-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                 viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                      d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                            </svg>
+                            Create new ticket
+                        </button>
+                    </div>
+                </div>
+            )}
+            {!isLoading && data.tickets.length !== 0 && <TicketStackedList tickets={data.tickets}/>}
         </>
     )
 }

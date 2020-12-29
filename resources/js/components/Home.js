@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
-//TODO I don't know if this would be a "smart" thing to do as we may want to request other APIs instead of the new default and having axios as the name might confuse us
 import axios from "../config/axiosConfig.js"
-import StackedList from "./StackedList.js";
+import TicketStackedList from "./TicketStackedList.js";
 
 function Home(props) {
     const [data, setData] = useState({tickets: []});
@@ -69,7 +68,7 @@ function Home(props) {
                     </div>
                 </div>
             </div>
-            <StackedList tickets={data.tickets}/>
+            <TicketStackedList tickets={data.tickets}/>
         </>
     )
 }

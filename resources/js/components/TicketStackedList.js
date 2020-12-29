@@ -1,12 +1,9 @@
 import React, {useState, useEffect} from "react";
+import ImpactBadge from "./ui/ImpactBadge";
+import StatusBadge from "./ui/StatusBadge";
+import Time from "./Time";
 
-function StackedList({tickets}) {
-
-    const impact_dict = {
-        "Low": "green",
-        "Medium": "yellow",
-        "High": "red"
-    };
+function TicketStackedList({tickets}) {
 
     return (
         <>
@@ -24,20 +21,16 @@ function StackedList({tickets}) {
                                                 {`#${ticket.identifier}`}
                                         </span>
                                         </p>
-                                        <div className="ml-2 flex-shrink-0 flex items-center">
-                                            <p className="text-xs text-gray-400 font-medium pr-2">
+                                        <div className="ml-2 flex flex-shrink-0 items-center">
+                                            <p className="text-xs text-gray-400 font-medium px-2">
                                                 Impact
                                             </p>
-                                            <p className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-${impact_dict[ticket.impact.name]}-100 text-${impact_dict[ticket.impact.name]}-800`}>
-                                                {ticket.impact.name}
+                                            <ImpactBadge impact={ticket.impact} className=""/>
+                                            <p className="text-xs text-gray-400 font-medium px-2">
+                                                Status
                                             </p>
-                                            <p className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-500 ml-2">
-                                                {ticket.status.name}
-                                            </p>
+                                            <StatusBadge status={ticket.status}/>
                                             {/*TODO An error/bugfix/request classification could be great later */}
-                                            {/*<p className="ml-2 px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">*/}
-                                            {/*    Error*/}
-                                            {/*</p>*/}
                                         </div>
                                     </div>
                                     <div className="mt-2 sm:flex sm:justify-between">
@@ -50,17 +43,16 @@ function StackedList({tickets}) {
                                         </div>
                                         <div className="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
                                             {/* Heroicon name: calendar */}
-                                            <svg className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                                            <svg className="flex-shrink-0 mr-1.5 h-4 w-4 text-gray-400"
                                                  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#FFD393"
                                                  aria-hidden="true">
                                                 <path fillRule="evenodd"
                                                       d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
                                                       clipRule="evenodd"/>
                                             </svg>
-                                            <p>
-                                                Last updated on
-                                                <time className="pl-1 font-medium" dateTime="2020-01-07">January 7,
-                                                    2020</time>
+                                            <p className="text-xs">
+                                                Last updated
+                                                <Time dateTime={ticket.updated_at} className="pl-1 font-medium"/>
                                             </p>
                                         </div>
                                     </div>
@@ -74,4 +66,4 @@ function StackedList({tickets}) {
     )
 }
 
-export default StackedList;
+export default TicketStackedList;

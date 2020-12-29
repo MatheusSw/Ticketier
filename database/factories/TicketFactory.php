@@ -33,7 +33,8 @@ class TicketFactory extends Factory
             'impact_id' => Impact::all()->random()->id,
             'created_by_id' => $user->id,
             'status_id' => TicketStatus::all()->random()->id,
-            'estimated_labour' => $this->faker->time()
+            'estimated_labour' => $this->faker->time(),
+            'updated_at' => $this->faker->dateTimeThisDecade()
         ];
     }
 }

@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import {Transition} from "@headlessui/react";
-import Home from "./Home";
+import Home from "../components/Home";
 
-function Dashboard() {
+function LayoutDashboard({children}) {
     const [isDropdownOpen, setDropdown] = useState(false);
     const [isMobileDropdownOpen, setMobileDrop] = useState(false);
 
@@ -103,21 +103,12 @@ function Dashboard() {
                                     className="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-caramel"
                                     onClick={() => setMobileDrop(!isMobileDropdownOpen)}>
                                     <span className="sr-only">Open main menu</span>
-                                    {/*
-                    Heroicon name: menu
 
-                    Menu open: "hidden", Menu closed: "block"
-                  */}
                                     <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
                                          viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                                               d="M4 6h16M4 12h16M4 18h16"/>
                                     </svg>
-                                    {/*
-                    Heroicon name: x
-
-                    Menu open: "block", Menu closed: "hidden"
-                  */}
                                     <svg className="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
                                          viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -129,18 +120,13 @@ function Dashboard() {
                     </div>
                     <div className={`${isMobileDropdownOpen ? "block" : "hidden"} sm:hidden`}>
                         <div className="pt-2 pb-3 space-y-1">
-                            {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800" */}
                             <a href="#"
                                className="bg-caramel-light block pl-3 pr-4 py-2 text-base font-medium">
-                                Dashboard
+                                Home
                             </a>
                             <a href="#"
                                className="text-gray-600 hover:bg-gray-50 hover:text-gray-800 block pl-3 pr-4 py-2 text-base font-medium">
                                 Tickets
-                            </a>
-                            <a href="#"
-                               className="text-gray-600 hover:bg-gray-50 hover:text-gray-800 block pl-3 pr-4 py-2 text-base font-medium">
-                                Help
                             </a>
                         </div>
                         <div className="pt-4 pb-3 border-t border-gray-200">
@@ -193,7 +179,7 @@ function Dashboard() {
                     <main>
                         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                             <div className="px-4 py-8 sm:px-0">
-                                <Home/>
+                                {children}
                             </div>
                         </div>
                     </main>
@@ -203,4 +189,4 @@ function Dashboard() {
     )
 }
 
-export default Dashboard;
+export default LayoutDashboard;

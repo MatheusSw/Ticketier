@@ -1,0 +1,38 @@
+scalar DateTime
+    @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+type Query {
+    tickets: [Ticket!]! @all
+    ticket(id: Int! @eq(key: "identifier")): Ticket! @find
+}
+
+type Ticket {
+    id: ID!
+    identifier: Int!
+    title: String!
+    description: String!
+    impact: Impact! @belongsTo
+    created_by: User!
+    status: TicketStatus! @belongsTo
+    estimated_labour: DateTime!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+#For some reason this type isn't working
+type TicketStatus {
+    id: ID!
+    name: String!
+}
+
+type Impact {
+    id: ID!
+    name: String!
+}
+
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    password: String!
+}

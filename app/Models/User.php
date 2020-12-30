@@ -33,11 +33,18 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
+     * Get the status for this ticket
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function ticketStatus()
+    {
+        return $this->belongsTo(TicketStatus::class);
+    }
+
+    /**
+     * Get the tickets with this status.
+     */
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }

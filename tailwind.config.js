@@ -14,7 +14,7 @@ module.exports = {
             },
             colors: {
                 caramel: {
-                    'light': '#FFF4E4',
+                    'light': '#FFDEAD',
                     'DEFAULT': '#FFD393',
                 }
             },

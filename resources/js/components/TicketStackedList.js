@@ -22,14 +22,8 @@ function TicketStackedList({tickets}) {
                                         </span>
                                         </p>
                                         <div className="ml-2 flex flex-shrink-0 items-center">
-                                            <p className="text-xs text-gray-400 font-medium px-2">
-                                                Impact
-                                            </p>
                                             <ImpactBadge impact={ticket.impact} className=""/>
-                                            <p className="text-xs text-gray-400 font-medium px-2">
-                                                Status
-                                            </p>
-                                            <StatusBadge status={ticket.status}/>
+                                            <StatusBadge status={ticket.status} className="ml-2"/>
                                             {/*TODO An error/bugfix/request classification could be great later */}
                                         </div>
                                     </div>

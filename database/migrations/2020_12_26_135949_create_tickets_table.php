@@ -24,6 +24,8 @@ class CreateTicketsTable extends Migration
             $table->time('estimated_labour');
             $table->timestamps();
         });
+
+
     }
 
     /**

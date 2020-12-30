@@ -1,13 +1,14 @@
 import React from "react";
 import moment from "moment";
 
-function Time({dateTime, locale = 'en', written = true, format='Do MMM YYYY H:mm:ss', ...rest}) {
+function Time({dateTime, locale = 'en', written = true, format = 'Do MMM YYYY H:mm:ss', ...rest}) {
 
-    if (locale !== 'en')
+    if (locale !== 'en'){
         moment.locale(locale);
+    }
 
     let date = moment(dateTime);
-    let htmlDateTime = date.format('DD MMM YYYY H:mm:ss'); //To ensure Accessibility, probably not optimal, and I'm open to suggestions
+    const attrDateTime = date.format('DD MMM YYYY H:mm:ss'); //To ensure Accessibility, probably not optimal, and I'm open to suggestions
 
     if (written) {
         date = date.startOf('hour').fromNow(); //an hour ago, 12 hours ago, X months ago, etc...
@@ -16,8 +17,9 @@ function Time({dateTime, locale = 'en', written = true, format='Do MMM YYYY H:mm
     }
 
     return (
-        <time {...rest}
-              dateTime={htmlDateTime}>{date}</time>
+        <time dateTime={attrDateTime} {...rest}>
+            {date}
+        </time>
     );
 }
 

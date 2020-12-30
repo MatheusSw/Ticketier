@@ -24,7 +24,7 @@ function LayoutDashboard({children}) {
                                     {/* Current: "border-caramel text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
                                     <a href="#"
                                        className="border-caramel text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                                        Dashboard
+                                        Home
                                     </a>
                                     <a href="#"
                                        className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
@@ -172,7 +172,7 @@ function LayoutDashboard({children}) {
                     <header>
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <h1 className="text-3xl font-bold leading-tight text-gray-900">
-                                Dashboard
+                                Home
                             </h1>
                         </div>
                     </header>

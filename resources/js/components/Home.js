@@ -2,9 +2,10 @@ import React, {useState, useEffect} from "react";
 import axios from "../config/axiosConfig.js"
 import TicketStackedList from "./TicketStackedList.js";
 import ContentLoader from "react-content-loader";
+import Paginator from "./Paginator";
 
 function Home(props) {
-    const [data, setData] = useState({tickets: []});
+    const [data, setData] = useState({tickets: [],});
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
@@ -15,28 +16,34 @@ function Home(props) {
                 method: 'post',
                 data: {
                     query: `
-            query AllAssignedTickets {
-              tickets {
-                identifier
-                title
-                description
-                impact {
-                  name
-                }
-                status {
-                  name
-                }
-                updated_at
-              }
-            }
+                        query AllAssignedTickets {
+                        tickets(first: 8, page: 1) {
+                            data {
+                            identifier
+                            title
+                            description
+                            impact {
+                                name
+                            }
+                            status {
+                                name
+                            }
+                            updated_at
+                            }
+                            paginatorInfo {
+                            currentPage
+                            lastPage
+                            }
+                        }
+                       }
             `
                 }
             }).then((response) => {
                 setData(response.data.data); //TODO Is there any way to stop GraphQ from returning "data" as the root?
+                setIsLoading(false);
             }).catch((error) => {
                 console.error(error);
             });
-            setIsLoading(false);
         })();
     }, [])
 
@@ -98,7 +105,8 @@ function Home(props) {
                     </div>
                     <div className="mt-5">
                         <button type="button"
-                                className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-lg text-white bg-caramel focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black">
+                                className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-lg text-white bg-caramel focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transition transition-colors hover:bg-caramel-light"
+                                role="button">
                             <svg className="-ml-1 mr-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none"
                                  viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -109,7 +117,13 @@ function Home(props) {
                     </div>
                 </div>
             )}
-            {!isLoading && data.tickets.length !== 0 && <TicketStackedList tickets={data.tickets}/>}
+            {!isLoading && data.tickets.length !== 0 &&
+            <Paginator paginatorInfo={data.tickets.paginatorInfo} data={data.tickets.data}>
+                {(tickets) => {
+                    return <TicketStackedList tickets={tickets}/>
+                }}
+            </Paginator>
+            }
         </>
     )
 }

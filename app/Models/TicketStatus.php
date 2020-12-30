@@ -10,6 +10,7 @@ class TicketStatus extends Model
     use HasFactory;
 
     protected $table = "ticket_statuses";
+
     /**
      * Get the tickets with this status.
      */

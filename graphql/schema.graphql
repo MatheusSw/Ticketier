@@ -2,8 +2,8 @@ scalar DateTime
     @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
 type Query {
-    tickets: [Ticket!]! @all
     ticket(id: Int! @eq(key: "identifier")): Ticket! @find
+    tickets: [Ticket!]! @paginate(defaultCount: 8)
 }
 
 type Ticket {
@@ -19,7 +19,6 @@ type Ticket {
     updated_at: DateTime!
 }
 
-#For some reason this type isn't working
 type TicketStatus {
     id: ID!
     name: String!

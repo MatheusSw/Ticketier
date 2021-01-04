@@ -12,7 +12,6 @@ function Home({...rest}) {
     const {page=1} = useParams();
 
     useEffect(() => {
-        console.info(page);
         const fetchData = (async () => {
             setIsLoading(true);
             const result = await axios({

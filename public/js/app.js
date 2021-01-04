@@ -76505,8 +76505,6 @@ function Home(_ref) {
       page = _useParams$page === void 0 ? 1 : _useParams$page;
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    console.info(page);
-
     var fetchData = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var result;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
@@ -76735,6 +76733,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ui_ImpactBadge__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ui/ImpactBadge */ "./resources/js/components/ui/ImpactBadge.js");
 /* harmony import */ var _ui_StatusBadge__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ui/StatusBadge */ "./resources/js/components/ui/StatusBadge.js");
 /* harmony import */ var _Time__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Time */ "./resources/js/components/Time.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
 
 
@@ -76749,8 +76749,8 @@ function TicketStackedList(_ref) {
   }, tickets.map(function (ticket) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       key: ticket.identifier
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "#",
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
+      to: "/dashboard/ticket/".concat(ticket.identifier),
       className: "block hover:bg-gray-50"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "px-4 py-4 sm:px-6"

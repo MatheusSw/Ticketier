@@ -1,5 +1,7 @@
 scalar DateTime
     @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+scalar Time
+    @scalar(class: "Ticketier\\GraphQL\\Scalars\\Time")
 
 type Query {
     ticket(id: Int! @eq(key: "identifier")): Ticket! @find
@@ -14,7 +16,7 @@ type Ticket {
     impact: Impact! @belongsTo
     created_by: User!
     status: TicketStatus! @belongsTo
-    estimated_labour: DateTime!
+    estimated_labour: Time!
     created_at: DateTime!
     updated_at: DateTime!
 }

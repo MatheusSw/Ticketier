@@ -25,6 +25,7 @@ function Paginator({paginatorInfo, children, data, ...rest}) {
                 </NavLink>
             </div>
             <div className="hidden md:-mt-px md:flex">
+                {/*TODO Limit the pages, otherwise it'll overflow the entire page*/}
                 {_.times(paginatorInfo.lastPage, (page) => {
                     page += 1; //Index 0
                     return (

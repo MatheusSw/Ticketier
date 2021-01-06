@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from "react";
 import axios from "../config/axiosConfig.js"
-import TicketStackedList from "./TicketStackedList.js";
+import TicketStackedList from "../components/TicketStackedList.js";
 import ContentLoader from "react-content-loader";
-import Paginator from "./Paginator";
+import Paginator from "../components/Paginator";
 import LayoutDashboard from "../layouts/Dashboard";
 import {useParams} from "react-router-dom";
 
 function Home({...rest}) {
-    const [data, setData] = useState({tickets: [],});
+    const [data, setData] = useState({tickets: []});
     const [isLoading, setIsLoading] = useState(false);
     const {page=1} = useParams();
 
@@ -45,13 +45,13 @@ function Home({...rest}) {
                 setData(response.data.data); //TODO Is there any way to stop GraphQ from returning "data" as the root?
                 setIsLoading(false);
             }).catch((error) => {
-                console.error(error);
+                console.error(error); //TODO Properly treat exceptions
             });
         })();
     }, [page])
 
     return (
-        <LayoutDashboard>
+        <LayoutDashboard title="Home">
             <div className="pb-3 mb-5 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
                 <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
                     <h3 className="text-lg leading-6 font-medium text-gray-800">

@@ -1,12 +1,15 @@
 import React, {useState, useEffect} from "react";
 import axios from "../config/axiosConfig.js"
-import TicketStackedList from "./TicketStackedList.js";
+import TicketStackedList from "../components/TicketStackedList.js";
 import ContentLoader from "react-content-loader";
-import Paginator from "./Paginator";
+import Paginator from "../components/Paginator";
+import LayoutDashboard from "../layouts/Dashboard";
+import {useParams} from "react-router-dom";
 
-function Home(props) {
-    const [data, setData] = useState({tickets: [],});
+function Home({...rest}) {
+    const [data, setData] = useState({tickets: []});
     const [isLoading, setIsLoading] = useState(false);
+    const {page=1} = useParams();
 
     useEffect(() => {
         const fetchData = (async () => {
@@ -17,7 +20,7 @@ function Home(props) {
                 data: {
                     query: `
                         query AllAssignedTickets {
-                        tickets(first: 8, page: 1) {
+                        tickets(first: 8, page: ${page}) {
                             data {
                             identifier
                             title
@@ -42,13 +45,13 @@ function Home(props) {
                 setData(response.data.data); //TODO Is there any way to stop GraphQ from returning "data" as the root?
                 setIsLoading(false);
             }).catch((error) => {
-                console.error(error);
+                console.error(error); //TODO Properly treat exceptions
             });
         })();
-    }, [])
+    }, [page])
 
     return (
-        <>
+        <LayoutDashboard title="Home">
             <div className="pb-3 mb-5 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
                 <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
                     <h3 className="text-lg leading-6 font-medium text-gray-800">
@@ -86,7 +89,6 @@ function Home(props) {
                 viewBox="0 0 476 120"
                 backgroundColor="#f3f3f3"
                 foregroundColor="#ecebeb"
-                {...props}
             >
                 <rect x="0" y="20" rx="3" ry="3" width="180" height="6"/>
                 <rect x="0" y="45" rx="3" ry="3" width="400" height="6"/>
@@ -124,7 +126,7 @@ function Home(props) {
                 }}
             </Paginator>
             }
-        </>
+        </LayoutDashboard>
     )
 }
 

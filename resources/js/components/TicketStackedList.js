@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import ImpactBadge from "./ui/ImpactBadge";
 import StatusBadge from "./ui/StatusBadge";
 import Time from "./Time";
+import {Link} from "react-router-dom";
 
 function TicketStackedList({tickets}) {
 
@@ -11,7 +12,7 @@ function TicketStackedList({tickets}) {
                 <ul className="divide-y divide-gray-200">
                     {tickets.map(ticket => (
                         <li key={ticket.identifier}>
-                            <a href="#" className="block hover:bg-gray-50">
+                            <Link to={`/dashboard/ticket/${ticket.identifier}`} className="block hover:bg-gray-50">
                                 <div className="px-4 py-4 sm:px-6">
                                     {/*TODO Add some sort of avatar, otherwise the UI looks to simplistic and boring*/}
                                     <div className="flex items-center justify-between">
@@ -51,7 +52,7 @@ function TicketStackedList({tickets}) {
                                         </div>
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         </li>
                     ))}
                 </ul>

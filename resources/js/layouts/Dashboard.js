@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import {Transition} from "@headlessui/react";
-import Home from "../components/Home";
 
-function LayoutDashboard({children}) {
+
+function LayoutDashboard({children, title}) {
     const [isDropdownOpen, setDropdown] = useState(false);
     const [isMobileDropdownOpen, setMobileDrop] = useState(false);
 
@@ -172,7 +172,7 @@ function LayoutDashboard({children}) {
                     <header>
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <h1 className="text-3xl font-bold leading-tight text-gray-900">
-                                Home
+                                {title}
                             </h1>
                         </div>
                     </header>
